@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import store from "./store"
 
 /* Bootstrap Imports */
 import Button from "react-bootstrap/Button";
@@ -11,6 +12,7 @@ import Alert from "react-bootstrap/Alert";
 
 /* custom components */
 import Sidebar from "./components/Sidebar";
+import NewTask from "./components/NewTask";
 
 function App() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
@@ -40,6 +42,7 @@ function App() {
               <p>Click the button to close this alert.</p>
               <Button onClick={clickHandler}>Close</Button>
             </Alert>
+            <NewTask store={store}/>
           </Col>
         </Row>
       </Container>
