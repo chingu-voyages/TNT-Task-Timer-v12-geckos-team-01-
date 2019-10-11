@@ -7,8 +7,7 @@ const ADD_TASK = "ADD_TASK"
 let nextId = 0;
 export const addTask = task => ({
   taskName: task.taskName,
-  time: task.time,
-  date:task.date,
+  completion: new Date(`${task.date} ${task.time}`).toLocaleString(),
   id: nextId++,
   type: ADD_TASK
 })
@@ -21,11 +20,10 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch(action.type){
     case ADD_TASK:
-      const {taskName, time, date, id} = action;
+      const {taskName, completion, id} = action;
       const newTask = {
         taskName,
-        time,
-        date,
+        completion,
         id
       };
       return {...state, tasks: [...state.tasks, newTask]};

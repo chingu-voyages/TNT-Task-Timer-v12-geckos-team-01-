@@ -4,7 +4,10 @@ import {connect} from 'react-redux'
 const TaskList = props => (
     <ul>
       {props.tasks.map(task => (
-      <li key={task.id}>{task.taskName}</li>
+      <div key={task.id}>
+      <h4>{task.taskName}</h4>
+      <p>To be completed: {task.completion}</p>
+      </div>
       ))}
     </ul>
 )
