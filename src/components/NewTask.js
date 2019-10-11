@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
+import {PropTypes} from 'prop-types'
 import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
 import { addTask } from '../store'
 
 class NewTask extends Component {
-  constructor(props){
-    super(props);
+  constructor({add}){
+    super({add});
     this.state = {
       taskName : "",
       time: "",
@@ -19,30 +20,42 @@ class NewTask extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.add(this.state);
+    this.add(this.state);
     this.setState({ taskName: "", time: "", date: ""});
-  }
+  };
 
-  render(props) {
+  render() {
+    const {taskName, date, time} = this.state;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-        <label htmlFor="taskName">Task Name: </label>
-        <input type="text" name="taskName" onChange={this.handleChange} value={this.state.taskName} ></input>
-        <label htmlFor="date">Completion Date: </label>
-        <input type="date" name="date" onChange={this.handleChange} value={this.state.date}></input>
-        <label htmlFor="time">Completion Time: </label>
-        <input type="time" name="time" onChange={this.handleChange} value={this.state.time}></input>
+
+        <label htmlFor="taskName">Task Name: <input type="text" name="taskName" onChange={this.handleChange} value={taskName}  />
+        </label>
+
+        <label htmlFor="date">Completion Date:
+        <input type="date" name="date" onChange={this.handleChange} value={date} />
+        </label>
+
+        <label htmlFor="time">Completion Time:
+        <input type="time" name="time" onChange={this.handleChange} value={time} />
+        </label>
+
         <Button type="submit">Submit</Button>
+
         </form>
-        </div>
+      </div>
     )
-  }
-}
+  };
+};
+
+NewTask.propTypes = {
+  add: PropTypes.any.isRequired
+};
 
 function mapDispatchToProps(dispatch){
   return {
-    add: function(task) {
+    add(task) {
       dispatch(addTask(task))
     }
   }

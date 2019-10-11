@@ -1,19 +1,25 @@
 import React from 'react'
+import {PropTypes} from 'prop-types'
 import {connect} from 'react-redux'
-import {removeTask} from '../store'
 import {Button} from 'react-bootstrap'
+import {removeTask} from '../store'
 
-const TaskList = props => (
+const TaskList = ({tasks, remove}) => (
     <ul>
-      {props.tasks.map(task => (
+      {tasks.map(task => (
       <div key={task.id}>
       <h4>{task.taskName}</h4>
       <p>To be completed: {task.completion}</p>
-      <Button id={task.id} onClick={props.remove}>Remove</Button>
+      <Button id={task.id} onClick={remove}>Remove</Button>
       </div>
       ))}
     </ul>
 )
+
+TaskList.propTypes = {
+  remove: PropTypes.any.isRequired,
+  tasks: PropTypes.array.isRequired
+}
 
 const mapStateToProps = state => ({
   tasks: state.tasks
@@ -21,7 +27,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    remove: function(event){
+    remove(event){
       dispatch(removeTask(event.target.id))
     }
   }
