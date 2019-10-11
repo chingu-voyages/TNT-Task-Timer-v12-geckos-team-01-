@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Button from "react-bootstrap/Button";
 import { connect } from 'react-redux'
 import { addTask } from '../store'
 
@@ -18,7 +19,6 @@ class NewTask extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
     this.props.add(this.state);
     this.setState({ taskName: "", time: "", date: ""});
   }
@@ -33,7 +33,7 @@ class NewTask extends Component {
         <input type="date" name="date" onChange={this.handleChange} value={this.state.date}></input>
         <label htmlFor="time">Completion Time: </label>
         <input type="time" name="time" onChange={this.handleChange} value={this.state.time}></input>
-        <input type="submit" value="Submit"></input>
+        <Button type="submit">Submit</Button>
         </form>
         </div>
     )
