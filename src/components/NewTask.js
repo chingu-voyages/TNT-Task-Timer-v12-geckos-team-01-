@@ -20,7 +20,7 @@ class NewTask extends Component {
     event.preventDefault();
     console.log(this.state);
     this.props.add(this.state);
-    this.setState({ taskName: "", time: "" });
+    this.setState({ taskName: "", time: "", date: ""});
   }
 
   render(props) {
