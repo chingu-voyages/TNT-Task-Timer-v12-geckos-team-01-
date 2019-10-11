@@ -13,6 +13,7 @@ import Alert from "react-bootstrap/Alert";
 /* custom components */
 import Sidebar from "./components/Sidebar";
 import NewTask from "./components/NewTask";
+import TaskList from "./components/TaskList"
 
 function App() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
@@ -31,6 +32,7 @@ function App() {
             md={{ span: 2, order: 1 }}
           >
             <h1 className="text-white">Sidebar</h1>
+            <TaskList store={store}/>
           </Col>
 
           <Col xs={{ span: 12, order: 1 }} md={{ span: 10, order: 2 }}>

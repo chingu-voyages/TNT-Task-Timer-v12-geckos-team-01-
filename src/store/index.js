@@ -1,17 +1,34 @@
 import {createStore} from 'redux';
 
-const ADDTASK = "ADDTASK"
+/* Action types */
+const ADD_TASK = "ADD_TASK"
 
+/* Action Creators */
+let nextId = 0;
+export const addTask = task => ({
+  taskName: task.taskName,
+  time: task.time,
+  date:task.date,
+  id: nextId++,
+  type: ADD_TASK
+})
+
+/* Initial State */
 const initialState = {
   tasks: []
 };
 
 const reducer = (state = initialState, action) => {
   switch(action.type){
-    case ADDTASK:
-      const newTasks = [...state.tasks];
-      newTasks.push(action.task)
-      return {...state, tasks: newTasks};
+    case ADD_TASK:
+      const {taskName, time, date, id} = action;
+      const newTask = {
+        taskName,
+        time,
+        date,
+        id
+      };
+      return {...state, tasks: [...state.tasks, newTask]};
     default:
     return state;
   }
