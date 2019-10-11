@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import store from "./store"
 
 /* Bootstrap Imports */
 import Button from "react-bootstrap/Button";
@@ -11,9 +10,12 @@ import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 
 /* custom components */
-import Sidebar from "./components/Sidebar";
+// import Sidebar from "./components/Sidebar";
 import NewTask from "./components/NewTask";
 import TaskList from "./components/TaskList"
+
+/* Redux Store */
+import store from "./store"
 
 function App() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
@@ -24,7 +26,7 @@ function App() {
 
   return (
     <main>
-      <Container fluid={true}>
+      <Container fluid>
         <Row>
           <Col
             className="vh-100 bg-primary"
