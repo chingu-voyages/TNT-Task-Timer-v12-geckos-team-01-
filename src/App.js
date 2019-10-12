@@ -14,9 +14,6 @@ import Alert from "react-bootstrap/Alert";
 import NewTask from "./components/NewTask";
 import TaskList from "./components/TaskList"
 
-/* Redux Store */
-import store from "./store"
-
 function App() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
 
@@ -34,7 +31,7 @@ function App() {
             md={{ span: 2, order: 1 }}
           >
             <h1 className="text-white">Sidebar</h1>
-            <TaskList store={store}/>
+            <TaskList/>
           </Col>
 
           <Col xs={{ span: 12, order: 1 }} md={{ span: 10, order: 2 }}>
@@ -46,7 +43,7 @@ function App() {
               <p>Click the button to close this alert.</p>
               <Button onClick={clickHandler}>Close</Button>
             </Alert>
-            <NewTask store={store}/>
+            <NewTask/>
           </Col>
         </Row>
       </Container>
