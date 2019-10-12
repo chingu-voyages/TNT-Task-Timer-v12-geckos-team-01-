@@ -2,9 +2,10 @@ import React from 'react'
 import {PropTypes} from 'prop-types'
 import {connect} from 'react-redux'
 import {Button} from 'react-bootstrap'
-import {removeTask} from '../store'
+import {removeTask, getTasks} from '../store'
 
-const TaskList = ({tasks, remove}) => (
+const TaskList = ({tasks, remove, getFromLocalStorage}) => (
+    <div>
     <ul>
       {tasks.map(task => (
       <div key={task.id}>
@@ -14,11 +15,14 @@ const TaskList = ({tasks, remove}) => (
       </div>
       ))}
     </ul>
-)
+    <Button onClick={getFromLocalStorage}>Get From Local</Button>
+    </div>
+  )
 
 TaskList.propTypes = {
   remove: PropTypes.any.isRequired,
-  tasks: PropTypes.array.isRequired
+  tasks: PropTypes.array.isRequired,
+  getFromLocalStorage: PropTypes.any.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -29,6 +33,9 @@ const mapDispatchToProps = dispatch => {
   return {
     remove(event){
       dispatch(removeTask(event.target.id))
+    },
+    getFromLocalStorage(){
+      dispatch(getTasks())
     }
   }
 }
