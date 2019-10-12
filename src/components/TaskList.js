@@ -1,8 +1,8 @@
-import React from 'react'
-import {PropTypes} from 'prop-types'
-import {connect} from 'react-redux'
-import {Button} from 'react-bootstrap'
-import {removeTask, getTasks} from '../store'
+import React from 'react';
+import {PropTypes} from 'prop-types';
+import {connect} from 'react-redux';
+import {Button} from 'react-bootstrap';
+import {removeTask, getTasks} from '../store';
 
 const TaskList = ({tasks, remove, getFromLocalStorage}) => (
     <div>
@@ -17,17 +17,17 @@ const TaskList = ({tasks, remove, getFromLocalStorage}) => (
     </ul>
     <Button onClick={getFromLocalStorage}>Get From Local</Button>
     </div>
-  )
+  );
 
 TaskList.propTypes = {
   remove: PropTypes.any.isRequired,
   tasks: PropTypes.array.isRequired,
   getFromLocalStorage: PropTypes.any.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   tasks: state.tasks
-})
+});
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -38,6 +38,6 @@ const mapDispatchToProps = dispatch => {
       dispatch(getTasks())
     }
   }
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(TaskList)
+export default connect(mapStateToProps, mapDispatchToProps)(TaskList);
