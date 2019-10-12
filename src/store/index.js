@@ -4,17 +4,13 @@ import {createStore} from 'redux';
 const ADD_TASK = "ADD_TASK";
 const REMOVE_TASK = "REMOVE_TASK";
 
-let nextId = 0;
 
 /* Action Creators */
 export const addTask = task => {
-  const newId = nextId;
-  nextId += 1;
 
  return {
   taskName: task.taskName,
   completion: new Date(`${task.date} ${task.time}`).toLocaleString(),
-  id: newId,
   done: false,
   type: ADD_TASK
   };
@@ -26,23 +22,28 @@ export const removeTask = id => ({
 });
 
 /* Initial State */
+const tasksFromLocalState = JSON.parse(localStorage.getItem("tasks")) || []
+const highestId = tasksFromLocalState.length ? Math.max(...tasksFromLocalState.map(each => each.id)) : 0
+
 const initialState = {
-  tasks: JSON.parse(localStorage.getItem("tasks")) || []
+  tasks: tasksFromLocalState,
+  availableId: highestId + 1
 };
 
 /* Reducer */
 const reducer = (state = initialState, action) => {
-  const {taskName, completion, id, done} = action;
+  const newId = state.availableId;
+  const {taskName, completion, done} = action;
   const newTask = {
     taskName,
     completion,
-    id,
-    done
+    done,
+    id: newId
   };
   switch(action.type){
     case ADD_TASK:
       localStorage.setItem("tasks", JSON.stringify([...state.tasks, newTask]));
-      return {...state, tasks: [...state.tasks, newTask]};
+      return {...state, availableId: newId + 1, tasks: [...state.tasks, newTask]};
     case REMOVE_TASK:
       localStorage.setItem("tasks", JSON.stringify(state.tasks.filter(each => each.id !== action.id)))
       return {...state, tasks: state.tasks.filter(each => each.id !== action.id)};
