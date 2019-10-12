@@ -12,7 +12,7 @@ import Alert from "react-bootstrap/Alert";
 /* custom components */
 // import Sidebar from "./components/Sidebar";
 import NewTask from "./components/NewTask";
-import TaskList from "./components/TaskList"
+import TaskList from "./components/TaskList";
 
 function App() {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
@@ -49,6 +49,6 @@ function App() {
       </Container>
     </main>
   );
-}
+};
 
 export default App;

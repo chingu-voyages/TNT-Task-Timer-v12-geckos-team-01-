@@ -17,7 +17,8 @@ export const addTask = task => {
   completion: new Date(`${task.date} ${task.time}`).toLocaleString(),
   id: newId,
   done: false,
-  type: ADD_TASK}
+  type: ADD_TASK
+  };
 };
 
 export const removeTask = id => ({
