@@ -59,7 +59,7 @@ function mapDispatchToProps(dispatch){
     add(task) {
       dispatch(addTask(task))
     }
-  }
-}
+  };
+};
 
-export default connect(null, mapDispatchToProps)(NewTask)
+export default connect(null, mapDispatchToProps)(NewTask);

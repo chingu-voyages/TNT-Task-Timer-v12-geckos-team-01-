@@ -1,5 +1,5 @@
 import React from "react";
-import {PropTypes} from 'prop-types'
+import {PropTypes} from 'prop-types';
 import Col from "react-bootstrap/Col";
 
 const Sidebar = ({children}) => {
@@ -12,6 +12,6 @@ const Sidebar = ({children}) => {
 
 Sidebar.propTypes = {
   children: PropTypes.any.isRequired
-}
+};
 
 export default Sidebar;
