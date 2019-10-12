@@ -5,13 +5,14 @@ import { connect } from 'react-redux'
 import { addTask } from '../store'
 
 class NewTask extends Component {
-  constructor({add}){
-    super({add});
+  constructor(props){
+    super(props);
     this.state = {
       taskName : "",
       time: "",
       date: ""
     };
+    this.add = props.add;
   };
 
   handleChange = (event) => {
