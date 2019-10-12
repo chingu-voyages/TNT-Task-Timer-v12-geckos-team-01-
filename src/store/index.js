@@ -3,7 +3,6 @@ import {createStore} from 'redux';
 /* Action Types */
 const ADD_TASK = "ADD_TASK";
 const REMOVE_TASK = "REMOVE_TASK";
-const GET_TASKS = "GET_TASKS"
 
 let nextId = 0;
 
@@ -26,17 +25,9 @@ export const removeTask = id => ({
     id: Number(id)
 });
 
-export const getTasks = () => {
-  const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-  return {
-    type: GET_TASKS,
-    tasks
-  }
-}
-
 /* Initial State */
 const initialState = {
-  tasks: []
+  tasks: JSON.parse(localStorage.getItem("tasks")) || []
 };
 
 /* Reducer */
@@ -55,8 +46,6 @@ const reducer = (state = initialState, action) => {
     case REMOVE_TASK:
       localStorage.setItem("tasks", JSON.stringify(state.tasks.filter(each => each.id !== action.id)))
       return {...state, tasks: state.tasks.filter(each => each.id !== action.id)};
-    case GET_TASKS:
-      return {...state, tasks: [...action.tasks]};
     default:
       return state;
   }
