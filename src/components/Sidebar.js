@@ -15,6 +15,7 @@ const Sidebar = props => {
         </li>
         <li className="sidebar-list-item">
           <Link to="/viewtasks" className="text-white">
+            <i className="material-icons">face</i>
             <span className="sidebar-link-text">View All Tasks</span>
           </Link>
         </li>
