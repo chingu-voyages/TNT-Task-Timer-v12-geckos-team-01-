@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 /* React Router */
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 /* custom components */
 // import NewTask from "./components/NewTask";
@@ -31,43 +31,16 @@ function App() {
       <Router>
         <Container fluid>
           <Row>
+            {/* Bootstrap Column for the sidebar */}
             <Col
-              className="vh-100 bg-primary"
+              className="p-0 vh-100 bg-primary"
               xs={{ span: 12, order: 2 }}
               md={{ span: 2, order: 1 }}
             >
-              <Sidebar>
-                <h2>Here is the sidebar content</h2>
-                <ul>
-                  <li>
-                    <Link to="/" className="text-white">
-                      Create A Task
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/viewtasks" className="text-white">
-                      View All Tasks
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/taskalerts" className="text-white">
-                      Alerts
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/reports" className="text-white">
-                      Reports
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/settings" className="text-white">
-                      Settings
-                    </Link>
-                  </li>
-                </ul>
-              </Sidebar>
+              <Sidebar />
             </Col>
 
+            {/* Bootstrap Column for the main content */}
             <Col xs={{ span: 12, order: 1 }} md={{ span: 10, order: 2 }}>
               <MainContent>
                 <Switch>
