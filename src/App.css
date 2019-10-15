@@ -1,17 +1,33 @@
+:root {
+  --sidebar-bg-color: #3f3c3c;
+  --sidebar-link-color: lightslategray;
+  --sidebar-icon-color: lightslategray;
+  --time-tracker-logo-color: lightslategray;
+}
+
 html,
 body {
   height: 100%;
 }
 
+/* disable all underlines when hovering over links and icons */
+i:hover {
+  text-decoration: none;
+}
+.sidebar a:hover {
+  text-decoration: none;
+}
+
 .sidebar {
   height: 100vh;
-  background-color: #1c4084;
+  background-color: var(--sidebar-bg-color);
   width: 100%;
+  border-right: solid 1px black;
   /* padding: 1.5rem; */
 }
 
 .time-tracker-logo {
-  color: white;
+  color: var(--time-tracker-logo-color);
   font-size: 2rem;
   padding: 1rem;
   text-align: center;
@@ -21,7 +37,18 @@ body {
 .sidebar-list {
   list-style-type: none;
   padding: 0;
-  margin-top: 2rem;
+  margin: 1rem 0 0 1rem;
+}
+.sidebar-icon {
+  color: var(--sidebar-icon-color);
+  display: inline-block;
+  margin-right: 0.25rem;
+  font-size: 1.5rem;
+}
+.sidebar-link-text {
+  color: var(--sidebar-link-color);
+  display: inline-block;
+  padding: 0;
 }
 
 .sidebar-list-item {
@@ -29,8 +56,27 @@ body {
   margin-left: 0.5rem;
 }
 
-@media (max-width: 800px) {
+.sidebar-link-container {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-link-container:hover * {
+  color: white;
+  text-decoration: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100px;
+    overflow: hidden;
+  }
   .sidebar-link-text {
+    display: none;
+  }
+
+  .time-tracker-logo {
     display: none;
   }
 }

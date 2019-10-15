@@ -34,14 +34,14 @@ function App() {
             {/* Bootstrap Column for the sidebar */}
             <Col
               className="p-0 vh-100 bg-primary"
-              xs={{ span: 12, order: 2 }}
-              md={{ span: 2, order: 1 }}
+              xs={{ span: 12 }}
+              md={{ span: 2 }}
             >
               <Sidebar />
             </Col>
 
             {/* Bootstrap Column for the main content */}
-            <Col xs={{ span: 12, order: 1 }} md={{ span: 10, order: 2 }}>
+            <Col xs={{ span: 12 }} md={{ span: 10 }}>
               <MainContent>
                 <Switch>
                   <Route exact path="/" component={CreateTaskPage} />

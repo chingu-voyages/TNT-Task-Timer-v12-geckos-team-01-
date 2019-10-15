@@ -10,28 +10,44 @@ const Sidebar = props => {
       <ul className="sidebar-list">
         <li className="sidebar-list-item">
           <Link to="/" className="text-white">
-            <span className="sidebar-link-text">Create A Task</span>
+            <div className="sidebar-link-container">
+              <i className="material-icons sidebar-icon">create</i>
+              <span className="sidebar-link-text">Create A Task</span>
+            </div>
           </Link>
         </li>
         <li className="sidebar-list-item">
           <Link to="/viewtasks" className="text-white">
-            <i className="material-icons">face</i>
-            <span className="sidebar-link-text">View All Tasks</span>
+            <div className="sidebar-link-container">
+              <i className="material-icons sidebar-icon">event_note</i>
+              <span className="sidebar-link-text">View All Tasks</span>
+            </div>
           </Link>
         </li>
         <li className="sidebar-list-item">
           <Link to="/taskalerts" className="text-white">
-            <span className="sidebar-link-text">Alerts</span>
+            <div className="sidebar-link-container">
+              <i className="material-icons sidebar-icon">alarm</i>
+              <span className="sidebar-link-text">Alerts</span>
+            </div>
           </Link>
         </li>
         <li className="sidebar-list-item">
           <Link to="/reports" className="text-white">
-            <span className="sidebar-link-text">Reports</span>
+            <div className="sidebar-link-container">
+              <i className="material-icons sidebar-icon">timeline</i>
+              <span className="sidebar-link-text">Reports</span>
+            </div>
           </Link>
         </li>
         <li className="sidebar-list-item">
           <Link to="/settings" className="text-white">
-            <span className="sidebar-link-text">Settings</span>
+            <div className="sidebar-link-container">
+              <i className="material-icons sidebar-icon">
+                settings_applications
+              </i>
+              <span className="sidebar-link-text">Settings</span>
+            </div>
           </Link>
         </li>
       </ul>
