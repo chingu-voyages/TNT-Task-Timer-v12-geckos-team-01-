@@ -1,12 +1,13 @@
 import React from "react";
-import {PropTypes} from 'prop-types';
-import Col from "react-bootstrap/Col";
+import PropTypes from "prop-types";
 
-const Sidebar = ({children}) => {
+const Sidebar = props => {
+  const { children } = props;
   return (
-    <Col xs={{ span: 12, order: 2 }} md={{ span: 2, order: 1 }}>
-      <div className="sidebar">{children}</div>
-    </Col>
+    <div>
+      <h1 className="text-white">Sidebar</h1>
+      {children}
+    </div>
   );
 };
 
