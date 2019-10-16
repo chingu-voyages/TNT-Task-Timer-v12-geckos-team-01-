@@ -15,7 +15,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import NewTask from "./components/NewTask";
 // import TaskList from "./components/TaskList";
 
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/Sidebar/Sidebar";
 import MainContent from "./components/MainContent";
 
 /* Pages */
