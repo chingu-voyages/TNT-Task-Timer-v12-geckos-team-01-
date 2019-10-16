@@ -17,6 +17,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar/Sidebar";
 import MainContent from "./components/MainContent";
+import TimerDisplay from "./components/TimerDisplay";
 
 /* Pages */
 import CreateTaskPage from "./pages/CreateTaskPage";
@@ -26,6 +27,8 @@ import TaskAlertsPage from "./pages/TaskAlertsPage";
 import ViewTasksPage from "./pages/ViewTasksPage";
 
 function App() {
+  const timerDone = () => console.log("Timer Done");
+
   return (
     <main>
       <Router>
@@ -50,6 +53,7 @@ function App() {
                   <Route exact path="/taskalerts" component={TaskAlertsPage} />
                   <Route exact path="/viewtasks" component={ViewTasksPage} />
                 </Switch>
+                <TimerDisplay text="Test Timer" doneCallback={timerDone} />
               </MainContent>
             </Col>
           </Row>

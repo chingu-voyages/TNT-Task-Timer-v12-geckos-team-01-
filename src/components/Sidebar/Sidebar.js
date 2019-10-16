@@ -1,10 +1,8 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import SidebarItem from "./SidebarItem";
 
-const Sidebar = props => {
-  const { children } = props;
-
+const Sidebar = () => {
   // The links that should appear in the sidebar.
   // to: the link used by React Router
   // iconName: Google material Icon name (https://material.io/resources/icons/?style=baseline)
@@ -19,6 +17,7 @@ const Sidebar = props => {
 
   const sidebarItems = sidebarData.map(sidebarItem => (
     <SidebarItem
+      key={sidebarItem.linkText}
       to={sidebarItem.to}
       iconName={sidebarItem.iconName}
       linkText={sidebarItem.linkText}
@@ -29,14 +28,12 @@ const Sidebar = props => {
     <div className="sidebar">
       <h1 className="time-tracker-logo">Time Tracker</h1>
       <ul className="sidebar-list">{sidebarItems}</ul>
-
-      <div className="sidebar-extra">{children}</div>
     </div>
   );
 };
 
-Sidebar.propTypes = {
-  children: PropTypes.any.isRequired
-};
+// Sidebar.propTypes = {
+
+// };
 
 export default Sidebar;
