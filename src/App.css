@@ -93,9 +93,20 @@ i:hover {
   display: inline-block;
 }
 
-.timer-text {
+.timer-text-container {
   color: var(--timer-display-text-color);
   font-size: 2rem;
+  display: flex;
+  align-items: center;
+}
+.timer-text {
+  display: inline-block;
+}
+.timer-display i {
+  display: inline-block;
+  color: black;
+  font-size: 2rem;
+  height: 2rem;
 }
 
 /* .timer-time is the class for the hours:minutes:seconds display and the seperator */
@@ -103,6 +114,7 @@ i:hover {
   font-size: 2.5rem;
   color: black;
 }
+
 @media (max-width: 900px) {
   .sidebar {
     width: 100px;

@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 /* Bootstrap Imports */
-// import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -26,8 +26,40 @@ import SettingsPage from "./pages/SettingsPage";
 import TaskAlertsPage from "./pages/TaskAlertsPage";
 import ViewTasksPage from "./pages/ViewTasksPage";
 
+/* helper functions */
+import { convertSecondsToHMS } from "./util/timetools";
+
 function App() {
-  const timerDone = () => console.log("Timer Done");
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+  const [timerDuration, setTimerDuration] = useState(0);
+  const [timerId, setTimerId] = useState();
+  const currentTime = convertSecondsToHMS(timerDuration);
+
+  // handler for when timer's done button is clicked.
+  const timerDone = () => {
+    if (isTimerRunning) {
+      setIsTimerRunning(false);
+      clearInterval(timerId);
+      setTimerId(null);
+      console.log(`Timer Done after ${timerDuration} seconds`);
+    }
+  };
+
+  // test method for starting a timer
+  const startTimer = () => {
+    let id;
+    if (!isTimerRunning) {
+      console.log("Starting Timer");
+      setTimerDuration(0); // make sure timer is reset each time.
+      setIsTimerRunning(true);
+      id = setInterval(() => {
+        setTimerDuration(prevTime => prevTime + 1);
+      }, 1000);
+      setTimerId(id);
+    } else {
+      console.log("Timer already running");
+    }
+  };
 
   return (
     <main>
@@ -45,6 +77,9 @@ function App() {
 
             {/* Bootstrap Column for the main content */}
             <Col xs={{ span: 12 }} md={{ span: 10 }}>
+              <Button variant="outline-primary" onClick={startTimer}>
+                Test Timer
+              </Button>
               <MainContent>
                 <Switch>
                   <Route exact path="/" component={CreateTaskPage} />
@@ -53,7 +88,16 @@ function App() {
                   <Route exact path="/taskalerts" component={TaskAlertsPage} />
                   <Route exact path="/viewtasks" component={ViewTasksPage} />
                 </Switch>
-                <TimerDisplay text="Test Timer" doneCallback={timerDone} />
+
+                {isTimerRunning && (
+                  <TimerDisplay
+                    text="Test Timer"
+                    hours={currentTime.hours}
+                    minutes={currentTime.minutes}
+                    seconds={currentTime.seconds}
+                    doneCallback={timerDone}
+                  />
+                )}
               </MainContent>
             </Col>
           </Row>
