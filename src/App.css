@@ -3,6 +3,10 @@
   --sidebar-link-color: lightslategray;
   --sidebar-icon-color: lightslategray;
   --time-tracker-logo-color: lightslategray;
+
+  --timer-display-bg-color: lightgray;
+  --timer-display-text-color: black;
+  --timer-display-time-color: black;
 }
 
 html,
@@ -18,6 +22,7 @@ i:hover {
   text-decoration: none;
 }
 
+/* sidebar styles */
 .sidebar {
   height: 100vh;
   background-color: var(--sidebar-bg-color);
@@ -67,6 +72,37 @@ i:hover {
   text-decoration: none;
 }
 
+/* TimerDisplay styles */
+
+.timer-display {
+  border: solid 1px black;
+  padding: 0.5rem;
+  position: absolute;
+  bottom: 5px;
+  width: 95%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: var(--timer-display-bg-color);
+  box-shadow: 5px 5px 5px #333;
+}
+
+.timer-display span {
+  display: inline-block;
+}
+
+.timer-text {
+  color: var(--timer-display-text-color);
+  font-size: 2rem;
+}
+
+/* .timer-time is the class for the hours:minutes:seconds display and the seperator */
+.timer-time {
+  font-size: 2.5rem;
+  color: black;
+}
 @media (max-width: 900px) {
   .sidebar {
     width: 100px;
