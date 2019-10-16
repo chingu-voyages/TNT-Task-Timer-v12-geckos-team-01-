@@ -67,11 +67,7 @@ function App() {
         <Container fluid>
           <Row>
             {/* Bootstrap Column for the sidebar */}
-            <Col
-              className="p-0 vh-100 bg-primary"
-              xs={{ span: 12 }}
-              md={{ span: 2 }}
-            >
+            <Col className="p-0 vh-100" xs={{ span: 12 }} md={{ span: 2 }}>
               <Sidebar />
             </Col>
 
