@@ -1,8 +1,11 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
 import SidebarItem from "./SidebarItem";
 
-const Sidebar = () => {
+const Sidebar = ({ currentTab }) => {
+  console.log(currentTab);
   // The links that should appear in the sidebar.
   // to: the link used by React Router
   // iconName: Google material Icon name (https://material.io/resources/icons/?style=baseline)
@@ -15,12 +18,14 @@ const Sidebar = () => {
     { to: "/settings", iconName: "settings_applications", linkText: "Settings" }
   ];
 
-  const sidebarItems = sidebarData.map(sidebarItem => (
+  const sidebarItems = sidebarData.map((sidebarItem, index) => (
     <SidebarItem
+      tabNumber={index}
       key={sidebarItem.linkText}
       to={sidebarItem.to}
       iconName={sidebarItem.iconName}
       linkText={sidebarItem.linkText}
+      selected={currentTab === index}
     />
   ));
 
@@ -32,8 +37,12 @@ const Sidebar = () => {
   );
 };
 
-// Sidebar.propTypes = {
+Sidebar.propTypes = {
+  currentTab: PropTypes.number.isRequired
+};
 
-// };
+const mapStateToProps = state => ({
+  currentTab: state.ui.currentTab
+});
 
-export default Sidebar;
+export default connect(mapStateToProps)(Sidebar);
