@@ -119,6 +119,24 @@ i:hover {
   color: black;
 }
 
+/* task list items (mostly in TaskList.js) */
+.task-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-list-name {
+  flex: 2;
+}
+
+.task-list-duration {
+  flex: 2;
+}
+
+.task-list-remove-button {
+  flex: 1;
+}
 @media (max-width: 900px) {
   .sidebar {
     width: 100px;

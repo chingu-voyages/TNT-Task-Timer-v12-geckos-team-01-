@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
 /* Bootstrap Imports */
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -41,7 +42,7 @@ function App() {
       setIsTimerRunning(false);
       clearInterval(timerId);
       setTimerId(null);
-      console.log(`Timer Done after ${timerDuration} seconds`);
+      // console.log(`Timer Done after ${timerDuration} seconds`);
     }
   };
 
@@ -73,9 +74,9 @@ function App() {
 
             {/* Bootstrap Column for the main content */}
             <Col xs={{ span: 12 }} md={{ span: 10 }}>
-              <Button variant="outline-primary" onClick={startTimer}>
+              {/* <Button variant="outline-primary" onClick={startTimer}>
                 Test Timer
-              </Button>
+              </Button> */}
               <MainContent>
                 <Switch>
                   <Route exact path="/" component={CreateTaskPage} />
