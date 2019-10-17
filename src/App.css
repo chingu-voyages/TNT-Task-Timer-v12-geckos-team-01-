@@ -72,6 +72,10 @@ i:hover {
   text-decoration: none;
 }
 
+.selected-sidebar-item > * {
+  color: white;
+}
+
 /* TimerDisplay styles */
 
 .timer-display {
