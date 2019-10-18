@@ -3,49 +3,27 @@ import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
 
 // bootstrap imports
-import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
 
 // task actions
 import { removeTask } from "../actions/taskActions";
 
+import TaskListItem from "./TaskListItem";
+
 // utilities
-import { convertSecondsToHMS } from "../util/timetools";
+// import { convertSecondsToHMS } from "../util/timetools";
 
+// eslint-disable-next-line no-unused-vars
 const TaskList = ({ tasks, remove }) => {
+  if (tasks.length === 0) {
+    return <h2>You have not created any tasks yet.</h2>;
+  }
   return (
-    <div>
+    <div className="task-list-container">
       <ListGroup>
-        {tasks.map(task => {
-          const duration = convertSecondsToHMS(task.duration);
-
-          // add leading 0 to any numbers less than 10
-          const hours =
-            duration.hours < 10 ? `0${duration.hours}` : duration.hours;
-          const minutes =
-            duration.minutes < 10 ? `0${duration.minutes}` : duration.minutes;
-          const seconds =
-            duration.seconds < 10 ? `0${duration.seconds}` : duration.seconds;
-          const durationString = `${hours}:${minutes}:${seconds}`;
-
-          return (
-            <ListGroup.Item key={task.id}>
-              <div className="task-list-item">
-                <h4 className="task-list-name">{task.taskName}</h4>
-                <h5 className="task-list-duration">
-                  Duration: {durationString}
-                </h5>
-                <Button
-                  className="task-list-remove-button"
-                  id={task.id}
-                  onClick={remove}
-                >
-                  Remove
-                </Button>
-              </div>
-            </ListGroup.Item>
-          );
-        })}
+        {tasks.map(task => (
+          <TaskListItem key={task.id} task={task} />
+        ))}
       </ListGroup>
     </div>
   );
@@ -57,7 +35,7 @@ TaskList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  tasks: state.tasks.tasks
+  tasks: state.tasks.taskList
 });
 
 const mapDispatchToProps = dispatch => ({
