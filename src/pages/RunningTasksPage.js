@@ -1,22 +1,26 @@
 import React from "react";
-import { connect } from "react-redux";
 
-// import Container from "react-bootstrap/Container";
-// import Row from "react-bootstrap/Row";
-// import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+
 // import ListGroup from "react-bootstrap/ListGroup";
+import TaskList from "../components/TaskList";
 
 const RunningTasksPage = () => {
   return (
-    <div>
-      <h1>Running Tasks</h1>
-    </div>
+    <Container>
+      <Row>
+        <Col xs={{ span: 12 }}>
+          <h1>Running Tasks</h1>
+        </Col>
+      </Row>
+      <Row>
+        <TaskList />
+      </Row>
+    </Container>
   );
 };
 /* make sure to add PropTypes if any */
-const mapStateToProps = state => {
-  return {
-    tasks: state.tasks.taskList
-  };
-};
-export default connect(mapStateToProps)(RunningTasksPage);
+
+export default RunningTasksPage;
