@@ -25,7 +25,6 @@ import CreateTaskPage from "./pages/CreateTaskPage";
 import RunningTasksPage from "./pages/RunningTasksPage";
 import FinishedTasksPage from "./pages/FinishedTasksPage";
 import ReportsPage from "./pages/ReportsPage";
-import ViewTasksPage from "./pages/ViewTasksPage";
 
 /* helper functions */
 import { convertSecondsToHMS } from "./util/timetools";
