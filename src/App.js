@@ -22,9 +22,9 @@ import TimerDisplay from "./components/TimerDisplay";
 
 /* Pages */
 import CreateTaskPage from "./pages/CreateTaskPage";
+import RunningTasksPage from "./pages/RunningTasksPage";
+import FinishedTasksPage from "./pages/FinishedTasksPage";
 import ReportsPage from "./pages/ReportsPage";
-import SettingsPage from "./pages/SettingsPage";
-import TaskAlertsPage from "./pages/TaskAlertsPage";
 import ViewTasksPage from "./pages/ViewTasksPage";
 
 /* helper functions */
@@ -81,9 +81,16 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={CreateTaskPage} />
                   <Route exact path="/reports" component={ReportsPage} />
-                  <Route exact path="/settings" component={SettingsPage} />
-                  <Route exact path="/taskalerts" component={TaskAlertsPage} />
-                  <Route exact path="/viewtasks" component={ViewTasksPage} />
+                  <Route
+                    exact
+                    path="/runningtasks"
+                    component={RunningTasksPage}
+                  />
+                  <Route
+                    exact
+                    path="/finishedtasks"
+                    component={FinishedTasksPage}
+                  />
                 </Switch>
 
                 {isTimerRunning && (
