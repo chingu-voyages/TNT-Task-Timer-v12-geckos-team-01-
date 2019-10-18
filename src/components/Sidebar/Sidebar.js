@@ -12,10 +12,9 @@ const Sidebar = ({ currentTab }) => {
   // linkText: The text that will be displayed for the link.
   const sidebarData = [
     { to: "/", iconName: "create", linkText: "Create A Task" },
-    { to: "/viewtasks", iconName: "event_note", linkText: "View All Tasks" },
-    { to: "/taskalerts", iconName: "alarm", linkText: "Alerts" },
-    { to: "/reports", iconName: "timeline", linkText: "Reports" },
-    { to: "/settings", iconName: "settings_applications", linkText: "Settings" }
+    { to: "/runningtasks", iconName: "event_note", linkText: "Running Tasks" },
+    { to: "/finishedtasks", iconName: "alarm", linkText: "Finished Tasks" },
+    { to: "/reports", iconName: "timeline", linkText: "Reports" }
   ];
 
   const sidebarItems = sidebarData.map((sidebarItem, index) => (

@@ -2,10 +2,9 @@ import { ADD_TASK, REMOVE_TASK } from "./types";
 
 /* Action Creators */
 export const addTask = task => {
+  console.log("Adding: ", task);
   return {
-    taskName: task.taskName,
-    completion: new Date(`${task.date} ${task.time}`).toLocaleString(),
-    done: false,
+    payload: task,
     type: ADD_TASK
   };
 };

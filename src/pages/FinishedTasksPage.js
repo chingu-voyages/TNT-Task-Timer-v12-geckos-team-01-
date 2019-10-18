@@ -1,11 +1,11 @@
 import React from "react";
 
-const SettingsPage = () => {
+const FinishedTasksPage = () => {
   return (
     <div>
-      <h1>Settings</h1>
+      <h1>Finished Tasks</h1>
     </div>
   );
 };
 /* make sure to add PropTypes if any */
-export default SettingsPage;
+export default FinishedTasksPage;
