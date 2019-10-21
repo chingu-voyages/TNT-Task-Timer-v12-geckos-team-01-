@@ -5,7 +5,10 @@
     taskName: String,
     running: boolean,
     dateStarted: Date object,
-    dateCompleted: DateObject
+    dateCompleted: DateObject,
+    isDetailedTask: boolean,
+    detailedTaskTimeUnits: String,
+    detailedTaskDuration: Number
   }
 */
 

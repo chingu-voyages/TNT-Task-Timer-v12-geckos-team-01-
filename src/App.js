@@ -26,40 +26,10 @@ import RunningTasksPage from "./pages/RunningTasksPage";
 import FinishedTasksPage from "./pages/FinishedTasksPage";
 import ReportsPage from "./pages/ReportsPage";
 
-/* helper functions */
-import { convertSecondsToHMS } from "./util/timetools";
-
 function App() {
   const [isTimerRunning, setIsTimerRunning] = useState(false);
   const [timerDuration, setTimerDuration] = useState(0);
   const [timerId, setTimerId] = useState();
-  const currentTime = convertSecondsToHMS(timerDuration);
-
-  // handler for when timer's done button is clicked.
-  const timerDone = () => {
-    if (isTimerRunning) {
-      setIsTimerRunning(false);
-      clearInterval(timerId);
-      setTimerId(null);
-      // console.log(`Timer Done after ${timerDuration} seconds`);
-    }
-  };
-
-  // test method for starting a timer
-  const startTimer = () => {
-    let id;
-    if (!isTimerRunning) {
-      console.log("Starting Timer");
-      setTimerDuration(0); // make sure timer is reset each time.
-      setIsTimerRunning(true);
-      id = setInterval(() => {
-        setTimerDuration(prevTime => prevTime + 1);
-      }, 1000);
-      setTimerId(id);
-    } else {
-      console.log("Timer already running");
-    }
-  };
 
   return (
     <main>
@@ -91,16 +61,6 @@ function App() {
                     component={FinishedTasksPage}
                   />
                 </Switch>
-
-                {isTimerRunning && (
-                  <TimerDisplay
-                    text="Test Timer"
-                    hours={currentTime.hours}
-                    minutes={currentTime.minutes}
-                    seconds={currentTime.seconds}
-                    doneCallback={timerDone}
-                  />
-                )}
               </MainContent>
             </Col>
           </Row>
