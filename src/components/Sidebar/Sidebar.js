@@ -12,8 +12,7 @@ const Sidebar = ({ currentTab }) => {
   // linkText: The text that will be displayed for the link.
   const sidebarData = [
     { to: "/", iconName: "create", linkText: "Create A Task" },
-    { to: "/runningtasks", iconName: "event_note", linkText: "Running Tasks" },
-    { to: "/finishedtasks", iconName: "alarm", linkText: "Finished Tasks" },
+    { to: "/mytasks", iconName: "event_note", linkText: "My Tasks" },
     { to: "/reports", iconName: "timeline", linkText: "Reports" }
   ];
 

@@ -74,7 +74,8 @@ const CreateTaskPage = ({ addTask, nextId }) => {
         taskName,
         dateStarted: new Date(),
         running: false,
-        dateCompleted: null
+        dateCompleted: null,
+        completed: false
       };
 
       if (isDetailedTask) {
