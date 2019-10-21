@@ -4,6 +4,7 @@
     id: Number,
     taskName: String,
     running: boolean,
+    completed: boolean,
     dateStarted: Date object,
     dateCompleted: DateObject,
     isDetailedTask: boolean,
@@ -12,7 +13,13 @@
   }
 */
 
-import { ADD_TASK, REMOVE_TASK } from "../actions/types";
+import {
+  ADD_TASK,
+  REMOVE_TASK,
+  START_TASK,
+  PAUSE_TASK,
+  COMPLETE_TASK
+} from "../actions/types";
 
 /* Initial State */
 const tasksFromLocalState = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -43,15 +50,73 @@ export default (state = initialState, action) => {
         taskList: [...state.taskList, newTask]
       };
     }
+
     case REMOVE_TASK:
       localStorage.setItem(
         "tasks",
-        JSON.stringify(state.taskList.filter(each => each.id !== action.id))
+        JSON.stringify(
+          state.taskList.filter(each => each.id !== action.payload)
+        )
       );
       return {
         ...state,
-        tasks: state.taskList.filter(each => each.id !== action.id)
+        taskList: state.taskList.filter(each => each.id !== action.payload)
       };
+
+    case START_TASK: {
+      const newTaskList = state.taskList.map(task => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            running: true,
+            completed: false
+          };
+        }
+        return task;
+      });
+
+      localStorage.setItem("tasks", JSON.stringify(newTaskList));
+
+      return {
+        ...state,
+        taskList: newTaskList
+      };
+    }
+
+    case PAUSE_TASK: {
+      const newTaskList = state.taskList.map(task => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            running: false
+          };
+        }
+        return task;
+      });
+
+      return {
+        ...state,
+        taskList: newTaskList
+      };
+    }
+
+    case COMPLETE_TASK: {
+      const newTaskList = state.taskList.map(task => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            completed: true,
+            running: false
+          };
+        }
+        return task;
+      });
+
+      return {
+        ...state,
+        taskList: newTaskList
+      };
+    }
     default:
       return state;
   }

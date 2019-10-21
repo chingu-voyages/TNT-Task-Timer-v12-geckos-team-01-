@@ -129,11 +129,17 @@ i:hover {
   align-items: center;
 }
 
+.task-list-item-control {
+  flex: 1;
+}
 .task-item-name {
   flex: 1;
 }
 
-.task-item-date {
+.task-item-status {
+  flex: 1;
+}
+.task-item-duration {
   flex: 1;
 }
 
