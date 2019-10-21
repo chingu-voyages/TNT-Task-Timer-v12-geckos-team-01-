@@ -12,7 +12,7 @@ const RunningTasksPage = () => {
     <Container>
       <Row>
         <Col xs={{ span: 12 }}>
-          <h1>Running Tasks</h1>
+          <h1>Paused Tasks</h1>
         </Col>
       </Row>
       <Row>

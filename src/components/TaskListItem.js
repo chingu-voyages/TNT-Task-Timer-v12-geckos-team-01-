@@ -5,6 +5,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 
 import TaskItemStatus from "./TaskItemStatus";
 import TaskControl from "./TaskControl";
+import DetailedTaskStatus from "./DetailedTaskStatus";
 
 const TaskListItem = ({ task }) => {
   return (
@@ -14,6 +15,7 @@ const TaskListItem = ({ task }) => {
         <span className="task-item-date">{task.dateStarted.toString()}</span>
         <TaskItemStatus running={task.running} />
         <TaskControl taskId={task.id} />
+        {task.isDetailedTask && <DetailedTaskStatus task={task} />}
       </div>
     </ListGroup.Item>
   );
