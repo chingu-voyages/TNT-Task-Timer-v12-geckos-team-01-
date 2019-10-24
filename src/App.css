@@ -96,32 +96,6 @@ i:hover {
   box-shadow: 5px 5px 5px #333;
 }
 
-.timer-display span {
-  display: inline-block;
-}
-
-.timer-text-container {
-  color: var(--timer-display-text-color);
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-}
-.timer-text {
-  display: inline-block;
-}
-.timer-display i {
-  display: inline-block;
-  color: black;
-  font-size: 2rem;
-  height: 2rem;
-}
-
-/* .timer-time is the class for the hours:minutes:seconds display and the seperator */
-.timer-time {
-  font-size: 2.5rem;
-  color: black;
-}
-
 /* task list items (mostly in TaskList.js and TaskListItem.js) */
 .task-list-container {
   width: 100%;
@@ -159,6 +133,10 @@ i:hover {
 }
 .task-item-duration {
   flex: 1;
+}
+span.duration {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 @media (max-width: 900px) {

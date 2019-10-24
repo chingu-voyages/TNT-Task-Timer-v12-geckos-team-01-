@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import ListGroup from "react-bootstrap/ListGroup";
@@ -9,6 +9,25 @@ import TaskItemDuration from "./TaskItemDuration";
 // import DetailedTaskStatus from "./DetailedTaskStatus";
 
 const TaskListItem = ({ task }) => {
+  const [currentDuration, setCurrentduration] = useState(0);
+  // eslint-disable-next-line no-unused-vars
+  const [timerId, setTimerId] = useState(null);
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (task.running) {
+      setTimerId(
+        setInterval(() => {
+          setCurrentduration(d => setCurrentduration(d + 1));
+        }, 1000)
+      );
+      return () => {
+        console.log("Clearing the timer");
+        clearInterval(timerId); // timer cleanup
+      };
+    }
+  }, [task]);
+
   return (
     <ListGroup.Item>
       <div className="task-list-item">
@@ -16,7 +35,7 @@ const TaskListItem = ({ task }) => {
 
         {/* <span className="task-item-date">{task.dateStarted.toString()}</span> */}
 
-        <TaskItemDuration task={task} />
+        <TaskItemDuration durationInSeconds={currentDuration} />
         <TaskItemStatus running={task.running} completed={task.completed} />
 
         <TaskControl taskId={task.id} />
