@@ -7,11 +7,14 @@
   --timer-display-bg-color: lightgray;
   --timer-display-text-color: black;
   --timer-display-time-color: black;
+
+  --body-bg-color: #eee;
 }
 
 html,
 body {
   height: 100%;
+  background-color: var(--body-bg-color);
 }
 
 /* disable all underlines when hovering over links and icons */
@@ -122,6 +125,21 @@ i:hover {
 /* task list items (mostly in TaskList.js and TaskListItem.js) */
 .task-list-container {
   width: 100%;
+  margin-bottom: 2rem;
+  background-color: white;
+  padding: 1rem;
+}
+.task-list {
+  height: 15rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.task-list-title {
+  background-color: #3a3ae0;
+  color: white;
+  padding: 0.5rem;
 }
 .task-list-item {
   display: flex;

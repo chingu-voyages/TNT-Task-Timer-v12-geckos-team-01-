@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 // import ListGroup from "react-bootstrap/ListGroup";
 import TaskList from "../components/TaskList";
@@ -12,34 +11,28 @@ import TaskList from "../components/TaskList";
 const RunningTasksPage = ({ taskList }) => {
   return (
     <Container>
-      <h2 className="display-1">My Tasks</h2>
-      <Row className="mt-3">
-        <Col xs={{ span: 12 }}>
-          <h1>Paused Tasks</h1>
-        </Col>
-      </Row>
+      <div className="page-header">
+        <h2 className="">My Tasks</h2>
+      </div>
+
       <Row>
         <TaskList
-          tasks={taskList.filter(task => !task.running && !task.completed)}
+          title="Running Tasks"
+          tasks={taskList.filter(task => task.running)}
         />
       </Row>
 
-      <Row className="mt-3">
-        <Col xs={{ span: 12 }}>
-          <h1>Running Tasks</h1>
-        </Col>
+      <Row>
+        <TaskList
+          title="Paused Tasks"
+          tasks={taskList.filter(task => !task.running && !task.completed)}
+        />
       </Row>
       <Row>
-        <TaskList tasks={taskList.filter(task => task.running)} />
-      </Row>
-
-      <Row className="mt-3">
-        <Col xs={{ span: 12 }}>
-          <h1>Completed Tasks</h1>
-        </Col>
-      </Row>
-      <Row>
-        <TaskList tasks={taskList.filter(task => task.completed)} />
+        <TaskList
+          title="Completed Tasks"
+          tasks={taskList.filter(task => task.completed)}
+        />
       </Row>
     </Container>
   );
