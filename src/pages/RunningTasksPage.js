@@ -12,7 +12,7 @@ const RunningTasksPage = ({ taskList }) => {
   return (
     <Container>
       <div className="page-header">
-        <h2 className="">My Tasks</h2>
+        <h2 className="display-3">My Tasks</h2>
       </div>
 
       <Row>
