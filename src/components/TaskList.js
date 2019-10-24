@@ -6,23 +6,32 @@ import ListGroup from "react-bootstrap/ListGroup";
 
 import TaskListItem from "./TaskListItem";
 
-const TaskList = ({ tasks }) => {
-  if (tasks.length === 0) {
-    return <h2>You have not created any tasks yet.</h2>;
-  }
+const TaskList = ({ tasks, title }) => {
   return (
     <div className="task-list-container">
-      <ListGroup>
-        {tasks.map(task => (
-          <TaskListItem key={task.id} task={task} />
-        ))}
-      </ListGroup>
+      <h2 className="task-list-title">{title}</h2>
+      <div className="task-list">
+        {tasks.length === 0 ? (
+          <h2>No tasks to display.</h2>
+        ) : (
+          <ListGroup>
+            {tasks.map(task => (
+              <TaskListItem key={task.id} task={task} />
+            ))}
+          </ListGroup>
+        )}
+      </div>
     </div>
   );
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.array.isRequired
+  tasks: PropTypes.array.isRequired,
+  title: PropTypes.string
+};
+
+TaskList.defaultProps = {
+  title: "Tasks"
 };
 
 export default TaskList;
