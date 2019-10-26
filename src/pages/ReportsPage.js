@@ -1,9 +1,11 @@
-import React from "react";
+import React from 'react';
+import TaskChart from '../components/TaskChart';
 
 const ReportsPage = () => {
   return (
     <div>
       <h1>Viewing Reports</h1>
+      <TaskChart />
     </div>
   );
 };
