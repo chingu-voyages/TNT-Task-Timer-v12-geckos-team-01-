@@ -19,7 +19,8 @@ import {
   REMOVE_TASK,
   START_TASK,
   PAUSE_TASK,
-  COMPLETE_TASK
+  COMPLETE_TASK,
+  DELETE_ALL_TASKS
 } from "../actions/types";
 
 const saveToLocalStorage = taskList => {
@@ -70,6 +71,19 @@ export default (state = initialState, action) => {
         ...state,
         taskList: state.taskList.filter(each => each.id !== action.payload)
       };
+
+    /*
+     * START_TASK - action started by clicking "Start Task" in the
+     * TaskControl Component.
+     */
+
+    case DELETE_ALL_TASKS: {
+      saveToLocalStorage([]);
+      return {
+        ...state,
+        taskList: []
+      };
+    }
 
     case START_TASK: {
       // get the status of the task

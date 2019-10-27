@@ -19,6 +19,7 @@ import MainContent from "./components/MainContent";
 import CreateTaskPage from "./pages/CreateTaskPage";
 import RunningTasksPage from "./pages/RunningTasksPage";
 import ReportsPage from "./pages/ReportsPage";
+import SettingsPage from "./pages/SettingsPage";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                   <Route exact path="/" component={CreateTaskPage} />
                   <Route exact path="/reports" component={ReportsPage} />
                   <Route exact path="/mytasks" component={RunningTasksPage} />
+                  <Route exact path="/settings" component={SettingsPage} />
                 </Switch>
               </MainContent>
             </Col>
