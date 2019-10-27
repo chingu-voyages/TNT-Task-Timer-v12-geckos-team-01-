@@ -3,7 +3,8 @@ import {
   REMOVE_TASK,
   START_TASK,
   PAUSE_TASK,
-  COMPLETE_TASK
+  COMPLETE_TASK,
+  DELETE_ALL_TASKS
 } from "./types";
 
 /* Action Creators */
@@ -33,3 +34,9 @@ export const completeTask = id => ({
   type: COMPLETE_TASK,
   payload: id
 });
+
+export const deleteAllTasks = () => {
+  return {
+    type: DELETE_ALL_TASKS
+  };
+};

@@ -13,7 +13,8 @@ const Sidebar = ({ currentTab }) => {
   const sidebarData = [
     { to: "/", iconName: "create", linkText: "Create A Task" },
     { to: "/mytasks", iconName: "event_note", linkText: "My Tasks" },
-    { to: "/reports", iconName: "timeline", linkText: "Reports" }
+    { to: "/reports", iconName: "timeline", linkText: "Reports" },
+    { to: "/settings", iconName: "tune", linkText: "Settings" }
   ];
 
   const sidebarItems = sidebarData.map((sidebarItem, index) => (
