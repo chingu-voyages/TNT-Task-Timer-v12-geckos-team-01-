@@ -5,7 +5,7 @@
     taskName: String,
     running: boolean,
     completed: boolean,
-    dateStarted: Date object,
+    dateStarted: Date object, // this should be called dateCreated
     timerStatusArray: [],
     dateCompleted: DateObject,
     isDetailedTask: boolean,
@@ -93,29 +93,26 @@ export default (state = initialState, action) => {
         if (task.id === action.payload && !task.running) {
           // find out if the task is not started or if it is currently paused
           const { timerStatusArray } = task;
-          if (timerStatusArray.length !== 0) {
-            const taskStatus =
-              timerStatusArray[timerStatusArray.length - 1].status;
-            if (taskStatus === "paused") {
-              // timer is currently paused, so record the date that it is resumed
-              const now = new Date();
-              const status = { status: "resumed", when: now };
-              return {
-                ...task,
-                running: true,
-                completed: false,
-                timerStatusArray: [...timerStatusArray, status]
-              };
-            }
-          } else {
-            // timer is not paused and probably hasn't been started
-            return {
-              ...task,
-              running: true,
-              completed: false,
-              dateStarted: new Date()
-            };
-          }
+
+          // timer is currently paused, so record the date that it is resumed
+          const now = new Date();
+          const status = { status: "started", when: now };
+          return {
+            ...task,
+            running: true,
+            completed: false,
+            timerStatusArray: [...timerStatusArray, status],
+            dateStarted: task.dateStarted || new Date()
+          };
+
+          // } else {
+          //   // timer is not paused and probably hasn't been started
+          //   return {
+          //     ...task,
+          //     running: true,
+          //     completed: false,
+          //     dateStarted: new Date()
+          //   };
         }
         return task;
       });
