@@ -73,6 +73,7 @@ const CreateTaskPage = ({ addTask, nextId }) => {
         id: nextId,
         taskName,
         dateStarted: new Date(),
+        timerStatusArray: [],
         running: false,
         dateCompleted: null,
         completed: false

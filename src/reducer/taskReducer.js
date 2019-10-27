@@ -6,6 +6,7 @@
     running: boolean,
     completed: boolean,
     dateStarted: Date object,
+    timerStatusArray: [],
     dateCompleted: DateObject,
     isDetailedTask: boolean,
     detailedTaskTimeUnits: String,
@@ -20,6 +21,10 @@ import {
   PAUSE_TASK,
   COMPLETE_TASK
 } from "../actions/types";
+
+const saveToLocalStorage = taskList => {
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+};
 
 /* Initial State */
 const tasksFromLocalState = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -40,10 +45,13 @@ export default (state = initialState, action) => {
     case ADD_TASK: {
       const newTask = action.payload;
 
-      localStorage.setItem(
-        "tasks",
-        JSON.stringify([...state.taskList, newTask])
-      );
+      // localStorage.setItem(
+      //   "tasks",
+      //   JSON.stringify([...state.taskList, newTask])
+      // );
+
+      saveToLocalStorage([...state.taskList, newTask]);
+
       return {
         ...state,
         availableId: newId + 1,
@@ -64,19 +72,41 @@ export default (state = initialState, action) => {
       };
 
     case START_TASK: {
-      const newTaskList = state.taskList.map(task => {
-        if (task.id === action.payload) {
-          return {
-            ...task,
-            running: true,
-            completed: false
-          };
+      // get the status of the task
+      const { taskList } = state;
+
+      const newTaskList = taskList.map(task => {
+        if (task.id === action.payload && !task.running) {
+          // find out if the task is not started or if it is currently paused
+          const { timerStatusArray } = task;
+          if (timerStatusArray.length !== 0) {
+            const taskStatus =
+              timerStatusArray[timerStatusArray.length - 1].status;
+            if (taskStatus === "paused") {
+              // timer is currently paused, so record the date that it is resumed
+              const now = new Date();
+              const status = { status: "resumed", when: now };
+              return {
+                ...task,
+                running: true,
+                completed: false,
+                timerStatusArray: [...timerStatusArray, status]
+              };
+            }
+          } else {
+            // timer is not paused and probably hasn't been started
+            return {
+              ...task,
+              running: true,
+              completed: false,
+              dateStarted: new Date()
+            };
+          }
         }
         return task;
       });
 
-      localStorage.setItem("tasks", JSON.stringify(newTaskList));
-
+      saveToLocalStorage(newTaskList);
       return {
         ...state,
         taskList: newTaskList
@@ -84,21 +114,54 @@ export default (state = initialState, action) => {
     }
 
     case PAUSE_TASK: {
+      const now = new Date();
+
       const newTaskList = state.taskList.map(task => {
-        if (task.id === action.payload) {
+        if (task.id === action.payload && task.running) {
           return {
             ...task,
+            timerStatusArray: [
+              ...task.timerStatusArray,
+              { status: "paused", when: now }
+            ],
             running: false
           };
         }
         return task;
       });
 
+      saveToLocalStorage(newTaskList);
+
       return {
         ...state,
         taskList: newTaskList
       };
     }
+
+    // case RESUME_TASK: {
+    //   const now = new Date();
+
+    //   const newTaskList = state.taskList.map(task => {
+    //     if (task.id === action.payload) {
+    //       return {
+    //         ...task,
+    //         timerStatusArray: [
+    //           ...task.timerStatusArray,
+    //           { status: "resumed", when: now }
+    //         ],
+    //         running: true
+    //       };
+    //     }
+    //     return task;
+    //   });
+
+    //   saveToLocalStorage(newTaskList);
+
+    //   return {
+    //     ...state,
+    //     taskList: newTaskList
+    //   };
+    // }
 
     case COMPLETE_TASK: {
       const newTaskList = state.taskList.map(task => {

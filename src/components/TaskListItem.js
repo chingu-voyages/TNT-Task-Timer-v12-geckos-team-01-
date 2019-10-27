@@ -15,6 +15,7 @@ const TaskListItem = ({ task }) => {
 
   // eslint-disable-next-line consistent-return
   useEffect(() => {
+    // duration math goes here.
     if (task.running) {
       setTimerId(
         setInterval(() => {
