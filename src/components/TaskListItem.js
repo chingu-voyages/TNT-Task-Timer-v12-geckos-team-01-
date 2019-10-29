@@ -9,6 +9,9 @@ import TaskControl from "./TaskControl";
 import TaskItemDuration from "./TaskItemDuration";
 // import DetailedTaskStatus from "./DetailedTaskStatus";
 
+// calculate the total number of seconds a timer has been running by
+// calculating the difference between a timer start and a timer pause.
+// Then just add up the differences.
 const calcTotalDuration = timerStatusArray => {
   let duration = 0;
 
@@ -33,7 +36,7 @@ const calcTotalDuration = timerStatusArray => {
 
     // check if the timer is still running and add in the current number
     // of seconds until now.
-    if (current.status === "started") {
+    if (next.status === "started") {
       const now = moment(new Date());
       duration += now.diff(moment(current.when), "seconds");
     }
@@ -63,7 +66,7 @@ const TaskListItem = ({ task }) => {
     if (task.running) {
       setTimerId(
         setInterval(() => {
-          setCurrentduration(d => setCurrentduration(d + 1));
+          setCurrentduration(d => setCurrentduration(d + 1)); // bug here somewheres?
         }, 1000)
       );
       return () => {
