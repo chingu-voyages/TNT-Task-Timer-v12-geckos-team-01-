@@ -7,7 +7,7 @@
   --timer-display-bg-color: lightgray;
   --timer-display-text-color: black;
   --timer-display-time-color: black;
-
+  --timer-duration-color: lightslategray;
   --body-bg-color: #eee;
 }
 
@@ -17,6 +17,9 @@ body {
   background-color: var(--body-bg-color);
 }
 
+.no-decoration {
+  text-decoration: none;
+}
 /* disable all underlines when hovering over links and icons */
 i:hover {
   text-decoration: none;
@@ -126,6 +129,8 @@ i:hover {
   flex: 1;
 }
 .task-item-name {
+  font-weight: bold;
+  font-size: 1.5rem;
   flex: 1;
 }
 
@@ -136,20 +141,32 @@ i:hover {
   flex: 1;
 }
 span.duration {
+  color: var(--timer-duration-color);
   font-size: 1.2rem;
   font-weight: bold;
 }
 
 @media (max-width: 900px) {
-  .sidebar {
-    width: 100px;
-    overflow: hidden;
+  .task-list-item {
+    display: block;
   }
-  .sidebar-link-text {
+
+  .task-item-name {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .task-item-duration {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+  }
+
+  .task-item-status {
     display: none;
   }
 
-  .time-tracker-logo {
-    display: none;
+  .task-list-item-control {
+    text-align: center;
   }
 }

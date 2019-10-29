@@ -10,7 +10,7 @@ import TaskList from "../components/TaskList";
 
 const RunningTasksPage = ({ taskList }) => {
   return (
-    <Container>
+    <Container fluid>
       <div className="page-header">
         <h2 className="display-3">My Tasks</h2>
       </div>
