@@ -10,6 +10,10 @@ const TimeTrackerNavbar = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav>
+          <Link to="/" className="no-decoration">
+            <Nav.Link href="/">Create A Task</Nav.Link>
+          </Link>
+
           <Link to="/mytasks" className="no-decoration">
             <Nav.Link href="/mytasks">My Tasks</Nav.Link>
           </Link>
