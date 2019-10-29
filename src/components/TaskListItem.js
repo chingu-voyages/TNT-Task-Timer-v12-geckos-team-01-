@@ -36,7 +36,7 @@ const calcTotalDuration = timerStatusArray => {
 
     // check if the timer is still running and add in the current number
     // of seconds until now.
-    if (next.status === "started") {
+    if (next && next.status === "started") {
       const now = moment(new Date());
       duration += now.diff(moment(current.when), "seconds");
     }

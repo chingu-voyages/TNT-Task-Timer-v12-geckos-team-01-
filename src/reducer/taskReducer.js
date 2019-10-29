@@ -175,11 +175,17 @@ export default (state = initialState, action) => {
     // }
 
     case COMPLETE_TASK: {
+      const completionDate = new Date();
+
       const newTaskList = state.taskList.map(task => {
         if (task.id === action.payload) {
           return {
             ...task,
             completed: true,
+            timerStatusArray: [
+              ...task.timerStatusArray,
+              { status: "paused", when: completionDate }
+            ],
             running: false
           };
         }
