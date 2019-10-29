@@ -12,8 +12,8 @@ import Col from "react-bootstrap/Col";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 /* custom components */
-import Sidebar from "./components/Sidebar/Sidebar";
 import MainContent from "./components/MainContent";
+import TimeTrackerNavbar from "./components/TimeTrackerNavbar";
 
 /* Pages */
 import CreateTaskPage from "./pages/CreateTaskPage";
@@ -25,15 +25,11 @@ function App() {
   return (
     <main>
       <Router>
+        <TimeTrackerNavbar />
         <Container fluid>
           <Row>
-            {/* Bootstrap Column for the sidebar */}
-            <Col className="p-0 vh-100" xs={{ span: 12 }} md={{ span: 2 }}>
-              <Sidebar />
-            </Col>
-
             {/* Bootstrap Column for the main content */}
-            <Col xs={{ span: 12 }} md={{ span: 10 }}>
+            <Col xs={{ span: 12 }}>
               <MainContent>
                 <Switch>
                   <Route exact path="/" component={CreateTaskPage} />

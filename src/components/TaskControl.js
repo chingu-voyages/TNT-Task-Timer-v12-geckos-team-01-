@@ -29,7 +29,7 @@ const TaskControl = ({
   return (
     <div className="task-list-item-control">
       <ButtonToolbar>
-        <DropdownButton size="sm" title="Task Actions">
+        <DropdownButton size="sm" className="ml-auto" title="Task Actions">
           <Dropdown.Item onClick={startTaskClicked}>Start task</Dropdown.Item>
           <Dropdown.Item onClick={pauseTaskClicked}>Pause task</Dropdown.Item>
           <Dropdown.Item onClick={completeTaskClicked}>

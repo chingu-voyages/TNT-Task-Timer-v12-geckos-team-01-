@@ -58,15 +58,12 @@ const TaskListItem = ({ task }) => {
     // }
   }, []);
 
-  // timer is adding the amount of time that the timer is running when the
-  // timer is paused, but only when displaying it - the state appears correct.
-
   // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (task.running) {
       setTimerId(
         setInterval(() => {
-          setCurrentduration(d => setCurrentduration(d + 1)); // bug here somewheres?
+          setCurrentduration(d => setCurrentduration(d + 1));
         }, 1000)
       );
       return () => {
