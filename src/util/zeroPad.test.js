@@ -1,4 +1,5 @@
 import zeroPad from './zeroPad';
+
 describe('zeroPad adds a leading 0 to all inputs < 10', () => {
   test('always returns a string', () => {
     expect(typeof zeroPad(0)).toBe('string');
