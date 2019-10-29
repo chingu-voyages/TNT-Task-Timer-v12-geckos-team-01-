@@ -2,9 +2,26 @@
 
 // Task Data to Chart Data conversion functions
 
+/*
+  Properties of the task objects: (as defined in taskReducer.js)
+  {
+    id: Number,
+    taskName: String,
+    running: boolean,
+    completed: boolean,
+    dateStarted: Date object, // this should be called dateCreated
+    timerStatusArray: [ { status: "started", when: now }, { status: "paused", when: now }, { status: "resumed", when: now },{ status: "paused", when: completionDate ],
+    dateCompleted: DateObject,
+    isDetailedTask: boolean,
+    detailedTaskTimeUnits: String,
+    detailedTaskDuration: Number
+  }
+*/
+
 const chartFormats = {
   getDailyTotals: tasks => {
-    return [tasks];
+    const outputShape = { tasks, day: 323123, minutes: 123123 };
+    return [outputShape];
   },
 
   getTaskTotals: tasks => {
@@ -17,27 +34,3 @@ export default chartFormats;
 //     return `${zeroPad(date.getMonth())}/${zeroPad(date.getDay())}`;
 //   };
 //   const taskTotals = tasks => tasks.reduce((acc, task) => {if (acc[task])}, {});
-
-//   const mockData = [
-//     {
-//       taskName: 'Eating Lunch',
-//       date: '2019-10-24T00:30:07.411Z',
-//       duration: 1001
-//     },
-//     {
-//       taskName: 'Reading book',
-//       date: '2019-10-24T00:30:07.411Z',
-//       duration: 2001
-//     },
-//     {
-//       taskName: 'Coding',
-//       date: '2019-10-25T00:30:07.411Z',
-//       duration: 501
-//     },
-//     {
-//       taskName: 'Dinner',
-//       date: '2019-10-26T00:30:07.411Z',
-//       duration: 750
-//     },
-//     { taskName: 'working', date: '2019-10-26T00:30:07.411Z', duration: 3001 }
-//   ];
