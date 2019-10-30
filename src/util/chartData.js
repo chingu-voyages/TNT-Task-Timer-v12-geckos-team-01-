@@ -1,3 +1,4 @@
+import taskOperations from './taskOperations';
 // import zeroPad from './zeroPad';
 
 // Task Data to Chart Data conversion functions
@@ -20,12 +21,17 @@
 
 const chartFormats = {
   getDailyTotals: tasks => {
-    const outputShape = { tasks, day: 323123, minutes: 123123 };
-    return [outputShape];
+    const outputShape = { tasks, day: 23232, minutes: 123123 };
+    return [outputShape, { tasks, day: 2323, minutes: 123123 }];
   },
 
   getTaskTotals: tasks => {
-    return [tasks];
+    return tasks
+      ? tasks.map(task => ({
+          taskName: task.taskName,
+          seconds: taskOperations.totalTime(task)
+        }))
+      : [];
   }
 };
 export default chartFormats;
