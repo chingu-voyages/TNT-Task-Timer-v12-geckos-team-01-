@@ -1,5 +1,5 @@
 import chartFormats from './chartData';
-import getOneHourMock from './mockTaskData';
+import { getOneHourTasks } from './mockTaskData';
 
 describe('getDailyTotals()', () => {
   test('function exists', () => {
@@ -9,7 +9,9 @@ describe('getDailyTotals()', () => {
   test('always returns an array', () => {
     expect(chartFormats.getDailyTotals()).toBeInstanceOf(Array);
     expect(chartFormats.getDailyTotals(undefined)).toBeInstanceOf(Array);
-    expect(chartFormats.getDailyTotals(getOneHourMock())).toBeInstanceOf(Array);
+    expect(chartFormats.getDailyTotals(getOneHourTasks())).toBeInstanceOf(
+      Array
+    );
   });
 
   test('all items in array are objects with {day,minutes} keys', () => {
@@ -31,7 +33,7 @@ describe('getTaskTotals()', () => {
   test('always returns an array', () => {
     expect(chartFormats.getTaskTotals()).toBeInstanceOf(Array);
     expect(chartFormats.getTaskTotals(undefined)).toBeInstanceOf(Array);
-    expect(chartFormats.getTaskTotals(getOneHourMock())).toBeInstanceOf(Array);
+    expect(chartFormats.getTaskTotals(getOneHourTasks())).toBeInstanceOf(Array);
   });
 
   test('all items in array are objects with {taskName: `string` ,seconds: `number`} ', () => {
@@ -40,7 +42,7 @@ describe('getTaskTotals()', () => {
       seconds: expect.anything()
     };
     chartFormats
-      .getTaskTotals(getOneHourMock())
+      .getTaskTotals(getOneHourTasks())
       .forEach(item => expect(item).toEqual(expect.objectContaining(expected)));
   });
 });

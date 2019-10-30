@@ -3,8 +3,7 @@ const addMinutes = (date, minutes) => {
   const startDate = new Date(date);
   return startDate.setMinutes(startDate.getMinutes() + minutes);
 };
-
-const getOneHourMock = () => [
+const getOneHourTasks = () => [
   {
     taskName: 'Eating Lunch',
     dateCreated: '2019-10-24T00:30:07.411Z',
@@ -86,5 +85,37 @@ const getOneHourMock = () => [
     ]
   }
 ];
+const getOneHourSingleTask = () => ({
+  taskName: 'Eating Lunch',
+  dateCreated: '2019-10-24T00:30:07.411Z',
+  timerStatusArray: [
+    { status: 'started', when: '2019-10-24T00:30:07.411Z' },
+    {
+      status: 'paused',
+      when: addMinutes('2019-10-24T00:30:07.411Z', 30)
+    },
+    {
+      status: 'resumed',
+      when: addMinutes('2019-10-24T00:30:07.411Z', 60)
+    },
+    { status: 'paused', when: addMinutes('2019-10-24T00:30:07.411Z', 90) }
+  ]
+});
+const getTwoHourSingleTask = () => ({
+  taskName: 'Eating Lunch',
+  dateCreated: '2019-10-24T00:30:07.411Z',
+  timerStatusArray: [
+    { status: 'started', when: '2019-10-24T00:30:07.411Z' },
+    {
+      status: 'paused',
+      when: addMinutes('2019-10-24T00:30:07.411Z', 60)
+    },
+    {
+      status: 'resumed',
+      when: addMinutes('2019-10-24T00:30:07.411Z', 60)
+    },
+    { status: 'paused', when: addMinutes('2019-10-24T00:30:07.411Z', 120) }
+  ]
+});
 
-export default getOneHourMock;
+export { getOneHourTasks, getOneHourSingleTask, getTwoHourSingleTask };
