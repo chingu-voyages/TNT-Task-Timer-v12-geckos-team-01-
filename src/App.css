@@ -191,6 +191,7 @@ span.duration {
 .details-started {
   color: green;
 }
+
 @media (max-width: 900px) {
   .task-list-item {
     display: block;

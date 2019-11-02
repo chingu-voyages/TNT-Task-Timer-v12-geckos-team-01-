@@ -29,12 +29,8 @@ const TaskList = ({ tasks, title }) => {
         ) : (
           <ListGroup>
             {tasks.map(task => (
-              <ListGroup.Item>
-                <TaskListItem
-                  key={task.id}
-                  task={task}
-                  showDetails={taskItemClicked}
-                />
+              <ListGroup.Item key={task.id}>
+                <TaskListItem task={task} showDetails={taskItemClicked} />
               </ListGroup.Item>
             ))}
           </ListGroup>
