@@ -1,12 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { PropTypes } from "prop-types";
 
 // bootstrap imports
 import ListGroup from "react-bootstrap/ListGroup";
 
 import TaskListItem from "./TaskListItem";
+import TaskDetails from "./TaskDetails";
 
 const TaskList = ({ tasks, title }) => {
+  const [isDetailsShown, setIsDetailsShown] = useState(false);
+  const [taskToShow, setTaskToShow] = useState(null);
+
+  const dismissDetails = () => setIsDetailsShown(false);
+
+  const taskItemClicked = task => {
+    if (!isDetailsShown) {
+      setIsDetailsShown(true);
+      setTaskToShow(task);
+    }
+  };
+
   return (
     <div className="task-list-container">
       <h2 className="task-list-title">{title}</h2>
@@ -16,11 +29,21 @@ const TaskList = ({ tasks, title }) => {
         ) : (
           <ListGroup>
             {tasks.map(task => (
-              <TaskListItem key={task.id} task={task} />
+              <ListGroup.Item>
+                <TaskListItem
+                  key={task.id}
+                  task={task}
+                  showDetails={taskItemClicked}
+                />
+              </ListGroup.Item>
             ))}
           </ListGroup>
         )}
       </div>
+
+      {isDetailsShown && (
+        <TaskDetails task={taskToShow} dismiss={dismissDetails} />
+      )}
     </div>
   );
 };

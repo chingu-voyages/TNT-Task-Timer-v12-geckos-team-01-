@@ -105,7 +105,9 @@ i:hover {
   margin-bottom: 2rem;
   background-color: white;
   padding: 1rem;
-  box-shadow: 5px 5px 5px #666;
+  box-shadow: 5px 5px 5px #999;
+  border: solid 1px #999;
+  border-radius: 10px;
 }
 .task-list {
   height: 15rem;
@@ -115,8 +117,9 @@ i:hover {
 }
 
 .task-list-title {
-  background-color: #3a3ae0;
-  color: white;
+  background-color: lightsteelblue;
+  border-radius: 10px;
+  color: #333;
   padding: 0.5rem;
 }
 .task-list-item {
@@ -129,9 +132,13 @@ i:hover {
   flex: 1;
 }
 .task-item-name {
+  cursor: pointer;
   font-weight: bold;
   font-size: 1.5rem;
   flex: 1;
+}
+.task-item-name:hover {
+  color: #7690d8;
 }
 
 .task-item-status {
@@ -146,6 +153,44 @@ span.duration {
   font-weight: bold;
 }
 
+/* style for the task detail dialog (from TaskDetails.js) */
+.task-details-dialog {
+  width: 90vw;
+  height: 60vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 5px 5px 5px #999;
+  border: solid 1px black;
+  border-radius: 10px;
+  overflow-y: scroll;
+  z-index: 2;
+}
+
+.task-details-title {
+  padding: 1rem;
+  background-color: #832868;
+  color: white;
+}
+
+.task-details-table-container {
+  overflow: auto;
+}
+
+.task-details-table {
+  width: 100%;
+}
+
+.details-paused {
+  color: red;
+}
+
+.details-started {
+  color: green;
+}
 @media (max-width: 900px) {
   .task-list-item {
     display: block;

@@ -46,11 +46,6 @@ export default (state = initialState, action) => {
     case ADD_TASK: {
       const newTask = action.payload;
 
-      // localStorage.setItem(
-      //   "tasks",
-      //   JSON.stringify([...state.taskList, newTask])
-      // );
-
       saveToLocalStorage([...state.taskList, newTask]);
 
       return {
@@ -104,15 +99,6 @@ export default (state = initialState, action) => {
             timerStatusArray: [...timerStatusArray, status],
             dateStarted: task.dateStarted || new Date()
           };
-
-          // } else {
-          //   // timer is not paused and probably hasn't been started
-          //   return {
-          //     ...task,
-          //     running: true,
-          //     completed: false,
-          //     dateStarted: new Date()
-          //   };
         }
         return task;
       });
