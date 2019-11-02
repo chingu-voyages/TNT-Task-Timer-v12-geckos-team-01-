@@ -149,31 +149,6 @@ export default (state = initialState, action) => {
       };
     }
 
-    // case RESUME_TASK: {
-    //   const now = new Date();
-
-    //   const newTaskList = state.taskList.map(task => {
-    //     if (task.id === action.payload) {
-    //       return {
-    //         ...task,
-    //         timerStatusArray: [
-    //           ...task.timerStatusArray,
-    //           { status: "resumed", when: now }
-    //         ],
-    //         running: true
-    //       };
-    //     }
-    //     return task;
-    //   });
-
-    //   saveToLocalStorage(newTaskList);
-
-    //   return {
-    //     ...state,
-    //     taskList: newTaskList
-    //   };
-    // }
-
     case COMPLETE_TASK: {
       const completionDate = new Date();
 
