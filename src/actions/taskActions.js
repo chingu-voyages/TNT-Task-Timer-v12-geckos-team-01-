@@ -1,16 +1,42 @@
-import { ADD_TASK, REMOVE_TASK } from "./types";
+import {
+  ADD_TASK,
+  REMOVE_TASK,
+  START_TASK,
+  PAUSE_TASK,
+  COMPLETE_TASK,
+  DELETE_ALL_TASKS
+} from "./types";
 
 /* Action Creators */
 export const addTask = task => {
   return {
-    taskName: task.taskName,
-    completion: new Date(`${task.date} ${task.time}`).toLocaleString(),
-    done: false,
+    payload: task,
     type: ADD_TASK
   };
 };
 
 export const removeTask = id => ({
   type: REMOVE_TASK,
-  id: Number(id)
+  payload: Number(id)
 });
+
+export const startTask = id => ({
+  type: START_TASK,
+  payload: id
+});
+
+export const pauseTask = id => ({
+  type: PAUSE_TASK,
+  payload: id
+});
+
+export const completeTask = id => ({
+  type: COMPLETE_TASK,
+  payload: id
+});
+
+export const deleteAllTasks = () => {
+  return {
+    type: DELETE_ALL_TASKS
+  };
+};

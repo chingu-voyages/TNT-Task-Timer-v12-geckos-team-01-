@@ -1,23 +1,31 @@
-import { ADD_TASK, REMOVE_TASK } from "../actions/types";
+/*
+  Properties of the task objects:
+  {
+    id: Number,
+    taskName: String,
+    running: boolean,
+    completed: boolean,
+    dateStarted: Date object, // this should be called dateCreated
+    timerStatusArray: [],
+    dateCompleted: DateObject,
+    isDetailedTask: boolean,
+    detailedTaskTimeUnits: String,
+    detailedTaskDuration: Number
+  }
+*/
 
-// create some fake tasks for testing
-// duration is in seconds
-const testTasks = [
-  { taskName: "Reading a book", date: new Date(), duration: 6000 },
-  { taskName: "Working on project", date: new Date(), duration: 4240 },
-  { taskName: "Watching TV", date: new Date(), duration: 2400 },
-  { taskName: "Eating Lunch", date: new Date(), duration: 1001 },
-  { taskName: "Napping", date: new Date(), duration: 985 },
-  { taskName: "Refactoring app", date: new Date(), duration: 720 }
-];
+import {
+  ADD_TASK,
+  REMOVE_TASK,
+  START_TASK,
+  PAUSE_TASK,
+  COMPLETE_TASK,
+  DELETE_ALL_TASKS
+} from "../actions/types";
 
-// set some ids for the tasks
-testTasks.forEach((task, index) => {
-  // eslint-disable-next-line no-param-reassign
-  task.id = index;
-});
-// set the tasks in the localstorage
-localStorage.setItem("tasks", JSON.stringify(testTasks));
+const saveToLocalStorage = taskList => {
+  localStorage.setItem("tasks", JSON.stringify(taskList));
+};
 
 /* Initial State */
 const tasksFromLocalState = JSON.parse(localStorage.getItem("tasks")) || [];
@@ -26,37 +34,169 @@ const highestId = tasksFromLocalState.length
   : 0;
 
 const initialState = {
-  tasks: tasksFromLocalState,
+  taskList: tasksFromLocalState,
   availableId: highestId + 1
 };
 
 /* Reducer */
 export default (state = initialState, action) => {
   const newId = state.availableId;
-  const { taskName, completion, done } = action;
-  const newTask = {
-    taskName,
-    completion,
-    done,
-    id: newId
-  };
+
   switch (action.type) {
-    case ADD_TASK:
-      localStorage.setItem("tasks", JSON.stringify([...state.tasks, newTask]));
+    case ADD_TASK: {
+      const newTask = action.payload;
+
+      // localStorage.setItem(
+      //   "tasks",
+      //   JSON.stringify([...state.taskList, newTask])
+      // );
+
+      saveToLocalStorage([...state.taskList, newTask]);
+
       return {
         ...state,
         availableId: newId + 1,
-        tasks: [...state.tasks, newTask]
+        taskList: [...state.taskList, newTask]
       };
+    }
+
     case REMOVE_TASK:
       localStorage.setItem(
         "tasks",
-        JSON.stringify(state.tasks.filter(each => each.id !== action.id))
+        JSON.stringify(
+          state.taskList.filter(each => each.id !== action.payload)
+        )
       );
       return {
         ...state,
-        tasks: state.tasks.filter(each => each.id !== action.id)
+        taskList: state.taskList.filter(each => each.id !== action.payload)
       };
+
+    /*
+     * START_TASK - action started by clicking "Start Task" in the
+     * TaskControl Component.
+     */
+
+    case DELETE_ALL_TASKS: {
+      saveToLocalStorage([]);
+      return {
+        ...state,
+        taskList: []
+      };
+    }
+
+    case START_TASK: {
+      // get the status of the task
+      const { taskList } = state;
+
+      const newTaskList = taskList.map(task => {
+        if (task.id === action.payload && !task.running) {
+          // find out if the task is not started or if it is currently paused
+          const { timerStatusArray } = task;
+
+          // timer is currently paused, so record the date that it is resumed
+          const now = new Date();
+          const status = { status: "started", when: now };
+          return {
+            ...task,
+            running: true,
+            completed: false,
+            timerStatusArray: [...timerStatusArray, status],
+            dateStarted: task.dateStarted || new Date()
+          };
+
+          // } else {
+          //   // timer is not paused and probably hasn't been started
+          //   return {
+          //     ...task,
+          //     running: true,
+          //     completed: false,
+          //     dateStarted: new Date()
+          //   };
+        }
+        return task;
+      });
+
+      saveToLocalStorage(newTaskList);
+      return {
+        ...state,
+        taskList: newTaskList
+      };
+    }
+
+    case PAUSE_TASK: {
+      const now = new Date();
+
+      const newTaskList = state.taskList.map(task => {
+        if (task.id === action.payload && task.running) {
+          return {
+            ...task,
+            timerStatusArray: [
+              ...task.timerStatusArray,
+              { status: "paused", when: now }
+            ],
+            running: false
+          };
+        }
+        return task;
+      });
+
+      saveToLocalStorage(newTaskList);
+
+      return {
+        ...state,
+        taskList: newTaskList
+      };
+    }
+
+    // case RESUME_TASK: {
+    //   const now = new Date();
+
+    //   const newTaskList = state.taskList.map(task => {
+    //     if (task.id === action.payload) {
+    //       return {
+    //         ...task,
+    //         timerStatusArray: [
+    //           ...task.timerStatusArray,
+    //           { status: "resumed", when: now }
+    //         ],
+    //         running: true
+    //       };
+    //     }
+    //     return task;
+    //   });
+
+    //   saveToLocalStorage(newTaskList);
+
+    //   return {
+    //     ...state,
+    //     taskList: newTaskList
+    //   };
+    // }
+
+    case COMPLETE_TASK: {
+      const completionDate = new Date();
+
+      const newTaskList = state.taskList.map(task => {
+        if (task.id === action.payload) {
+          return {
+            ...task,
+            completed: true,
+            timerStatusArray: [
+              ...task.timerStatusArray,
+              { status: "paused", when: completionDate }
+            ],
+            running: false
+          };
+        }
+        return task;
+      });
+
+      return {
+        ...state,
+        taskList: newTaskList
+      };
+    }
     default:
       return state;
   }

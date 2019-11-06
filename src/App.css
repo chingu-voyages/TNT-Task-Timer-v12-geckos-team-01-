@@ -7,13 +7,19 @@
   --timer-display-bg-color: lightgray;
   --timer-display-text-color: black;
   --timer-display-time-color: black;
+  --timer-duration-color: lightslategray;
+  --body-bg-color: #eee;
 }
 
 html,
 body {
   height: 100%;
+  background-color: var(--body-bg-color);
 }
 
+.no-decoration {
+  text-decoration: none;
+}
 /* disable all underlines when hovering over links and icons */
 i:hover {
   text-decoration: none;
@@ -93,60 +99,74 @@ i:hover {
   box-shadow: 5px 5px 5px #333;
 }
 
-.timer-display span {
-  display: inline-block;
+/* task list items (mostly in TaskList.js and TaskListItem.js) */
+.task-list-container {
+  width: 100%;
+  margin-bottom: 2rem;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 5px 5px 5px #666;
+}
+.task-list {
+  height: 15rem;
+  overflow: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
-.timer-text-container {
-  color: var(--timer-display-text-color);
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
+.task-list-title {
+  background-color: #3a3ae0;
+  color: white;
+  padding: 0.5rem;
 }
-.timer-text {
-  display: inline-block;
-}
-.timer-display i {
-  display: inline-block;
-  color: black;
-  font-size: 2rem;
-  height: 2rem;
-}
-
-/* .timer-time is the class for the hours:minutes:seconds display and the seperator */
-.timer-time {
-  font-size: 2.5rem;
-  color: black;
-}
-
-/* task list items (mostly in TaskList.js) */
 .task-list-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.task-list-name {
-  flex: 2;
-}
-
-.task-list-duration {
-  flex: 2;
-}
-
-.task-list-remove-button {
+.task-list-item-control {
   flex: 1;
 }
+.task-item-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+  flex: 1;
+}
+
+.task-item-status {
+  flex: 1;
+}
+.task-item-duration {
+  flex: 1;
+}
+span.duration {
+  color: var(--timer-duration-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 @media (max-width: 900px) {
-  .sidebar {
-    width: 100px;
-    overflow: hidden;
+  .task-list-item {
+    display: block;
   }
-  .sidebar-link-text {
+
+  .task-item-name {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .task-item-duration {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+  }
+
+  .task-item-status {
     display: none;
   }
 
-  .time-tracker-logo {
-    display: none;
+  .task-list-item-control {
+    text-align: center;
   }
 }
