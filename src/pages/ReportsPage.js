@@ -16,21 +16,6 @@ const ReportsPage = ({ taskList }) => {
       ? `${TotalMinutes.toFixed(1)} minutes`
       : `${(TotalMinutes / 60).toFixed(1)} hours`;
 
-  const totalTaskDaysTimeObj = taskList.reduce((acc, task) => {
-    const days = taskOperations.totalTimeByDay(task);
-    Object.keys(days).forEach(date => {
-      acc[date] = days[date] + (acc[date] || 0);
-    });
-    return acc;
-  }, {});
-
-  const TotalTaskDaysArray = Object.keys(totalTaskDaysTimeObj)
-    .map(date => ({
-      date,
-      seconds: totalTaskDaysTimeObj[date]
-    }))
-    .sort((a, b) => new Date(b.date) - new Date(a.date));
-
   return (
     <>
       <h2 style={{ textAlign: 'right' }}>{TotalDisplay} tracked total</h2>
@@ -38,7 +23,7 @@ const ReportsPage = ({ taskList }) => {
         <Card.Body>
           <Card.Title>Daily Tracked Time</Card.Title>{' '}
           <TaskChart
-            data={TotalTaskDaysArray}
+            data={chartFormats.getDailyTotals(taskList)}
             title=""
             xKey="date"
             xTitle="date"

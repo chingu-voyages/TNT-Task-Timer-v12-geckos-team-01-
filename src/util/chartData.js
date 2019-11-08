@@ -21,8 +21,21 @@ import taskOperations from './taskOperations';
 
 const chartFormats = {
   getDailyTotals: tasks => {
-    const outputShape = { tasks, day: 23232, minutes: 123123 };
-    return [outputShape, { tasks, day: 2323, minutes: 123123 }];
+    const totalTaskDaysTimeObj = tasks.reduce((acc, task) => {
+      const days = taskOperations.totalTimeByDay(task);
+      Object.keys(days).forEach(date => {
+        acc[date] = days[date] + (acc[date] || 0);
+      });
+      return acc;
+    }, {});
+
+    const TotalTaskDaysArray = Object.keys(totalTaskDaysTimeObj)
+      .map(date => ({
+        date,
+        seconds: totalTaskDaysTimeObj[date]
+      }))
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+    return TotalTaskDaysArray;
   },
 
   getTaskTotals: tasks => {
