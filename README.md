@@ -1,3 +1,8 @@
+# TNT Timer
+## An in-browser timer app
+
+Keep track of your current tasks, manage workflow, and keep records with this in-browser tool!
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
