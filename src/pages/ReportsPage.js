@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card';
 import TaskChart from '../components/TaskChart';
 import chartFormats from '../util/chartData';
 import taskOperations from '../util/taskOperations';
-import { getOneHourTasks } from '../util/mockTaskData';
 
 const ReportsPage = ({ taskList }) => {
   const TotalMinutes =
@@ -34,14 +33,14 @@ const ReportsPage = ({ taskList }) => {
       </Card>
       <Card className="text-center  mt-3">
         <Card.Body>
-          <Card.Title>Task Totals (mockdata)</Card.Title>
+          <Card.Title>Task Totals</Card.Title>
           <TaskChart
-            data={chartFormats.getTaskTotals(getOneHourTasks())}
+            data={chartFormats.getTaskTotals(taskList)}
             title=""
             xKey="taskName"
-            xTitle="Task Name"
+            xTitle="Task"
             yKey="minutes"
-            yTitle="Time [minutes]"
+            yTitle="Minutes"
           />
         </Card.Body>
       </Card>
