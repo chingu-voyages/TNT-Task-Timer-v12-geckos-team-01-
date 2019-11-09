@@ -3,6 +3,8 @@
 
 Keep track of your current tasks, manage workflow, and keep records with this in-browser tool!
 
+Deployed with GitHub Pages here: https://chingu-voyages.github.io/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
