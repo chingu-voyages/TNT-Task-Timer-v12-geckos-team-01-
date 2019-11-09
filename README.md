@@ -3,7 +3,7 @@
 
 Keep track of your current tasks, manage workflow, and keep records with this in-browser tool!
 
-Deployed with GitHub Pages here: https://chingu-voyages.github.io/
+Deployed with GitHub Pages here: https://chingu-voyages.github.io/v12-geckos-team-01/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
