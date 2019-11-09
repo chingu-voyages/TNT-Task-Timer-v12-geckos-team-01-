@@ -32,7 +32,7 @@ const TaskChart = ({ data, title, xKey, xTitle, yKey, yTitle }) => {
             label={{ value: yTitle, angle: -90, position: 'insideLeft' }}
           />
           <Tooltip />
-          <Bar dataKey={yKey} />
+          <Bar dataKey={yKey} fill="lightsteelblue" />
         </BarChart>
       </ResponsiveContainer>
     </div>
