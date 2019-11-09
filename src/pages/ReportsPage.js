@@ -27,8 +27,8 @@ const ReportsPage = ({ taskList }) => {
             title=""
             xKey="date"
             xTitle="date"
-            yKey="seconds"
-            yTitle="Time [seconds]"
+            yKey="minutes"
+            yTitle="Minutes"
           />
         </Card.Body>
       </Card>
@@ -40,8 +40,8 @@ const ReportsPage = ({ taskList }) => {
             title=""
             xKey="taskName"
             xTitle="Task Name"
-            yKey="seconds"
-            yTitle="Time [seconds]"
+            yKey="minutes"
+            yTitle="Time [minutes]"
           />
         </Card.Body>
       </Card>

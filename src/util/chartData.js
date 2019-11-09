@@ -32,7 +32,7 @@ const chartFormats = {
     const TotalTaskDaysArray = Object.keys(totalTaskDaysTimeObj)
       .map(date => ({
         date,
-        seconds: totalTaskDaysTimeObj[date]
+        minutes: Math.round(totalTaskDaysTimeObj[date] / 60)
       }))
       .sort((a, b) => new Date(b.date) - new Date(a.date));
     return TotalTaskDaysArray;
@@ -42,7 +42,7 @@ const chartFormats = {
     return tasks
       ? tasks.map(task => ({
           taskName: task.taskName,
-          seconds: taskOperations.totalTime(task)
+          minutes: Math.round(taskOperations.totalTime(task) / 60)
         }))
       : [];
   }
