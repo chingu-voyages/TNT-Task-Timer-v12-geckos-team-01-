@@ -18,9 +18,6 @@ const CreateTaskPage = ({ addTask, nextId }) => {
   const [isAlertVisible, setIsAlertVisible] = useState(false);
   const [taskName, setTaskName] = useState("");
   const [taskGroup, setTaskGroup] = useState("");
-  const [isDetailedTask, setIsDetailedTask] = useState(false);
-  const [detailedTaskDuration, setDetailedTaskDuration] = useState(0);
-  const [detailedTaskTimeUnits, setDetailedTaskTimeUnits] = useState("minutes");
   const [alertData, setAlertData] = useState({
     type: "",
     message: ""
@@ -48,7 +45,6 @@ const CreateTaskPage = ({ addTask, nextId }) => {
   const resetForm = () => {
     setTaskName("");
     setTaskGroup("");
-    setIsDetailedTask(false);
   };
 
   // createTask() is called when the "Create Task" button is pressed.
@@ -59,15 +55,6 @@ const CreateTaskPage = ({ addTask, nextId }) => {
     if (taskName === "") {
       setAlertData({ type: "danger", message: "You must enter a task name." });
       setIsAlertVisible(true);
-    } else if (
-      isDetailedTask &&
-      Number.parseInt(detailedTaskDuration, 10) <= 0
-    ) {
-      setAlertData({
-        type: "danger",
-        message: "A detailed task must have a duration."
-      });
-      setIsAlertVisible(true);
     } else {
       const task = {
         id: nextId,
@@ -76,45 +63,14 @@ const CreateTaskPage = ({ addTask, nextId }) => {
         timerStatusArray: [],
         running: false,
         dateCompleted: null,
-        completed: false
+        completed: false,
+        group: taskGroup
       };
-
-      if (isDetailedTask) {
-        task.isDetailedTask = true;
-        task.detailedTaskTimeUnits = detailedTaskTimeUnits;
-        task.detailedTaskDuration = detailedTaskDuration;
-      }
 
       addTask(task);
       setAlertData({ type: "success", message: `Created task ${taskName}.` });
       setIsAlertVisible(true);
       resetForm();
-    }
-  };
-
-  // detailedTaskClicked() handler for when the "Detailed Task" check box
-  // is clicked.
-  const detailedTaskClicked = () => {
-    setIsDetailedTask(!isDetailedTask);
-  };
-
-  // timeUnitSelected() is the handler for when the time unit is selected in
-  // the detailed task form. It can be hours, minutes, or days.
-  const timeUnitSelected = e => {
-    setDetailedTaskTimeUnits(e.target.value);
-  };
-
-  const taskDurationChanged = e => {
-    const duration = Number.parseInt(e.target.value, 10);
-    // make sure a number was actually entered
-    if (Number.isNaN(duration)) {
-      setAlertData({
-        type: "danger",
-        message: "You must enter a valid number"
-      });
-      setIsAlertVisible(true);
-    } else {
-      setDetailedTaskDuration(duration);
     }
   };
 
@@ -158,44 +114,6 @@ const CreateTaskPage = ({ addTask, nextId }) => {
             </Col>
           </Row>
 
-          <Row>
-            <Col xs={{ span: 12 }}>
-              <Form.Group>
-                <Form.Check
-                  type="checkbox"
-                  label="Detailed Task"
-                  onChange={detailedTaskClicked}
-                  checked={isDetailedTask}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-
-          {isDetailedTask && (
-            <Form.Group>
-              <Row>
-                <Col>
-                  <Form.Label>Amount of time to spend on this task </Form.Label>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={{ span: 2 }}>
-                  <Form.Control
-                    type="number"
-                    value={detailedTaskDuration}
-                    onChange={taskDurationChanged}
-                  />
-                </Col>
-                <Col xs={{ span: 2 }}>
-                  <Form.Control as="select" onChange={timeUnitSelected}>
-                    <option value="minutes">Minutes</option>
-                    <option value="hours">Hours</option>
-                    <option value="days">Days</option>
-                  </Form.Control>
-                </Col>
-              </Row>
-            </Form.Group>
-          )}
           {/* Buttons */}
           <Row>
             <Col xs={{ span: 6 }}>
